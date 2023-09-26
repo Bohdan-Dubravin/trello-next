@@ -1,0 +1,38 @@
+Host github.com-home
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_rsa_home
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Host github.com-home
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_rsa_home
+

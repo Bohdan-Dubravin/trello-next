@@ -44,5 +44,5 @@ export async function DELETE(req: Request, { params }: BoardRouteContext) {
     where: { id },
   });
 
-  return NextResponse.json({}, { status: 204 });
+  return NextResponse.next({ status: 204 });
 }
