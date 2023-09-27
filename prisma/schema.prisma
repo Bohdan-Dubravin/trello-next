@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,35 +7,33 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model Boards {
-  id String @id @default(uuid())
-  title String
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-  columns Columns[]
+  id         String    @id @default(uuid())
+  title      String
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
+  columns    Columns[]
 }
 
-
 model Columns {
-  id String @id @default(uuid())
-  title String
-  width Int
-  order Int
-  board_id String
-  board Boards @relation(fields: [board_id], references: [id], onDelete: Cascade)
-  cards Cards[]
+  id         String   @id @default(uuid())
+  title      String
+  width      Int
+  order      Int
+  board_id   String
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
+  Cards      Cards[]
+  board      Boards   @relation(fields: [board_id], references: [id], onDelete: Cascade)
 }
 
 model Cards {
-  id String @id @default(uuid())
-  title String
+  id          String   @id @default(uuid())
+  title       String
   description String?
-  order Int
-  columns_id String
-  columns Columns @relation(fields: [columns_id], references: [id], onDelete: Cascade)
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  order       Int
+  column_id  String
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+  Columns     Columns  @relation(fields: [column_id], references: [id], onDelete: Cascade)
 }
