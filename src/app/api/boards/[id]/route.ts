@@ -18,14 +18,15 @@ export async function PUT(req: Request, { params }: BoardRouteContext) {
 
   const existBoard = await prisma.boards.findUnique({ where: { id } });
   if (!existBoard) {
-    return NextResponse.json([
-      { code: "not_found", messages: "Board not found" },
-    ]);
+    return NextResponse.json(
+      [{ code: "not_found", messages: "Board not found" }],
+      { status: 400 }
+    );
   }
 
   const updatedBoard = await prisma.boards.update({
     where: { id },
-    data: body,
+    data: validateBody.data,
   });
 
   return NextResponse.json(updatedBoard);
@@ -35,14 +36,14 @@ export async function DELETE(req: Request, { params }: BoardRouteContext) {
   const { id } = params;
   const existBoard = await prisma.boards.findUnique({ where: { id } });
   if (!existBoard) {
-    return NextResponse.json([
-      { code: "not_found", messages: "Board not found" },
-    ]);
+    return NextResponse.json(
+      [{ code: "not_found", message: "Board not found" }],
+      { status: 400 }
+    );
   }
-
-  const updatedBoard = await prisma.boards.delete({
+  await prisma.boards.delete({
     where: { id },
   });
 
-  return NextResponse.next({ status: 204 });
+  return NextResponse.json({}, { status: 200 });
 }

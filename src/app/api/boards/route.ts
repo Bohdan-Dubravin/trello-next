@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { createBoardDto, updateBoardDto } from "./dto";
+import { createBoardDto } from "./dto";
 import { prisma } from "@/app/core/prisma";
 
 export async function GET() {
