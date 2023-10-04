@@ -1,54 +1,53 @@
 import { NextResponse } from "next/server";
-import { createColumnDto } from "./dto";
+import { createCardDto } from "./dto";
 import { prisma } from "@/app/core/prisma";
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
-  const board_id = searchParams.get("board_id");
-  if (!board_id) {
+  const column_id = searchParams.get("column_id");
+  if (!column_id) {
     return NextResponse.json(
       [
         {
           code: "missing query param",
-          field: "board_id",
-          message: "board_id in query params is required",
+          field: "column_id",
+          message: "column_id in query params is required",
         },
       ],
       { status: 400 }
     );
   }
 
-  const boards = await prisma.columns.findMany({
-    where: { board_id },
+  const cards = await prisma.cards.findMany({
+    where: { column_id },
     orderBy: { order: "asc" },
   });
 
-  return NextResponse.json(boards);
+  return NextResponse.json(cards);
 }
 
 export async function POST(req: Request) {
   const body = await req.json();
-  const validateBody = createColumnDto.safeParse(body);
+  const validateBody = createCardDto.safeParse(body);
 
   if (!validateBody.success) {
     return NextResponse.json(validateBody.error.issues, { status: 400 });
   }
 
-  const { title, width, board_id } = validateBody.data;
+  const { title, column_id } = validateBody.data;
 
-  const lastColumn = await prisma.columns.findFirst({
-    where: { board_id },
+  const lastCard = await prisma.cards.findFirst({
+    where: { column_id },
     orderBy: { order: "desc" },
   });
 
-  const newColumn = await prisma.columns.create({
+  const newCard = await prisma.cards.create({
     data: {
       title,
-      width,
-      board_id,
-      order: lastColumn ? lastColumn.order + 1 : 0,
+      column_id,
+      order: lastCard ? lastCard.order + 1 : 0,
     },
   });
 
-  return NextResponse.json(newColumn);
+  return NextResponse.json(newCard);
 }

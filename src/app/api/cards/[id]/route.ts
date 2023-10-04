@@ -1,49 +1,49 @@
 import { NextResponse } from "next/server";
 
 import { prisma } from "@/app/core/prisma";
-import { updateColumnDto } from "../dto";
+import { updateCardDto } from "../dto";
 
-interface ColumnRouteContext {
+interface CardRouteContext {
   params: {
     id: string;
   };
 }
 
-export async function PUT(req: Request, { params }: ColumnRouteContext) {
+export async function PUT(req: Request, { params }: CardRouteContext) {
   const { id } = params;
   const body = await req.json();
-  const validateBody = updateColumnDto.safeParse(body);
+  const validateBody = updateCardDto.safeParse(body);
   if (!validateBody.success) {
     return NextResponse.json(validateBody.error.issues, { status: 400 });
   }
 
-  const existColumn = await prisma.columns.findUnique({ where: { id } });
-  if (!existColumn) {
+  const existCard = await prisma.cards.findUnique({ where: { id } });
+  if (!existCard) {
     return NextResponse.json(
-      [{ code: "not_found", messages: "Column not found" }],
+      [{ code: "not_found", messages: "Card not found" }],
       { status: 400 }
     );
   }
 
-  const updatedColumn = await prisma.columns.update({
+  const updatedCard = await prisma.cards.update({
     where: { id },
     data: validateBody.data,
   });
 
-  return NextResponse.json(updatedColumn);
+  return NextResponse.json(updatedCard);
 }
 
-export async function DELETE(req: Request, { params }: ColumnRouteContext) {
+export async function DELETE(req: Request, { params }: CardRouteContext) {
   const { id } = params;
-  const existColumn = await prisma.columns.findUnique({ where: { id } });
-  if (!existColumn) {
+  const existCard = await prisma.cards.findUnique({ where: { id } });
+  if (!existCard) {
     return NextResponse.json(
-      [{ code: "not_found", message: "Column not found" }],
+      [{ code: "not_found", message: "Card not found" }],
       { status: 400 }
     );
   }
 
-  await prisma.columns.delete({
+  await prisma.cards.delete({
     where: { id },
   });
 

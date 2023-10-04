@@ -1,14 +1,13 @@
 import { z } from "zod";
-export const createColumnDto = z.object({
+export const createCardDto = z.object({
   title: z.string().min(1).max(20),
-  board_id: z.string().uuid(),
-  width: z.number().min(50).default(50),
+  column_id: z.string().uuid(),
 });
 
-export const updateColumnDto = createColumnDto
-  .omit({ board_id: true })
+export const updateCardDto = createCardDto
+  .extend({ description: z.string().nullable() })
   .partial();
 
-export const updateColumnOrderDto = z.array(
+export const updateCardOrderDto = z.array(
   z.object({ id: z.string().uuid(), order: z.number().nonnegative() })
 );
