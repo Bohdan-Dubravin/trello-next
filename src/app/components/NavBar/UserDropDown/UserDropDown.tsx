@@ -1,13 +1,19 @@
 "use client";
-import classNames from "classnames";
+import { useCLickOutside } from "@/app/lib/hooks/useClickOutside";
+import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { twMerge } from "tailwind-merge";
 
 const UserDropDown = () => {
   const [open, setOpen] = useState(false);
+  const ref = useCLickOutside<HTMLButtonElement>(() => {
+    setOpen(false);
+  });
+  const dropdownClass = clsx({ hidden: !open });
 
-  const toggleOpen = () => {
+  const toggleDown = () => {
     setOpen(!open);
   };
   return (
@@ -16,7 +22,8 @@ const UserDropDown = () => {
         type="button"
         className="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
         id="user-menu-button"
-        onClick={toggleOpen}
+        onClick={toggleDown}
+        ref={ref}
       >
         <span className="sr-only">Open user menu</span>
         <Image
@@ -29,9 +36,9 @@ const UserDropDown = () => {
       </button>
 
       <div
-        className={classNames(
+        className={twMerge(
           "z-50 absolute top-6 -left-32  my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600",
-          { hidden: !open }
+          dropdownClass
         )}
         id="user-dropdown"
       >
@@ -78,7 +85,7 @@ const UserDropDown = () => {
           </li>
         </ul>
       </div>
-      <button
+      {/* <button
         data-collapse-toggle="navbar-user"
         type="button"
         className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -101,7 +108,7 @@ const UserDropDown = () => {
             d="M1 1h15M1 7h15M1 13h15"
           />
         </svg>
-      </button>
+      </button> */}
     </div>
   );
 };
