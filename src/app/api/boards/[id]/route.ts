@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { updateBoardDto } from "../dto";
-import { prisma } from "@/app/core/prisma";
+import { prisma } from "@/core/prisma";
 
 interface BoardRouteContext {
   params: {

@@ -1,5 +1,5 @@
 "use client";
-import { useCLickOutside } from "@/app/lib/hooks/useClickOutside";
+import { useCLickOutside } from "@/lib/hooks/useClickOutside";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { prisma } from "@/app/core/prisma";
+import { prisma } from "@/core/prisma";
 import { updateColumnDto } from "../dto";
 
 interface ColumnRouteContext {

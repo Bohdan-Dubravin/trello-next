@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { prisma } from "@/app/core/prisma";
+import { prisma } from "@/core/prisma";
 import { updateColumnOrderDto } from "../dto";
 
 export async function PUT(req: Request) {

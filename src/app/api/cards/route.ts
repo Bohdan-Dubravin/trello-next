@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { createCardDto } from "./dto";
-import { prisma } from "@/app/core/prisma";
+import { prisma } from "@/core/prisma";
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);

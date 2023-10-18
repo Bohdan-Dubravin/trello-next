@@ -1,4 +1,5 @@
-import { NavBar } from "./components/NavBar";
+import { BoardCard } from "../components/BoardCards";
+import { NavBar } from "../components/NavBar";
 
 export default function Home() {
   return (
@@ -8,7 +9,7 @@ export default function Home() {
         {Array(5)
           .fill(0)
           .map((i, k) => {
-            return <div></div>;
+            return <BoardCard id={String(k)} title={`Board ${k}`} />;
           })}
       </div>
     </div>
