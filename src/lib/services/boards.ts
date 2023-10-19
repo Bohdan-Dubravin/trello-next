@@ -1,10 +1,16 @@
 import { api } from "@/core/api";
-import { prisma } from "@/core/prisma";
 import { Boards } from "@prisma/client";
+import { CreateBoardDto } from "@/app/api/boards/dto";
 
 const boardsService = {
   async getBoards() {
     const { data } = await api.get<Boards[]>("/api/boards");
+
+    return data;
+  },
+
+  async createBoard(board: CreateBoardDto) {
+    const { data } = await api.post<Boards>("/api/boards", board);
 
     return data;
   },

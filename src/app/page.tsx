@@ -1,6 +1,5 @@
-import { BoardsList } from "@/components/BoardsList";
+import { BoardsList } from "@/components/Boards";
 import { NavBar } from "../components/NavBar";
-import { prisma } from "@/core/prisma";
 import boardsService from "@/lib/services/boards";
 
 export default async function Home() {

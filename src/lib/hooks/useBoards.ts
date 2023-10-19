@@ -6,9 +6,11 @@ interface UseBoardsOptions {
   initialData: Boards[];
 }
 
+export const useBoardQueryKey = "boards";
+
 export const useBoards = ({ initialData }: UseBoardsOptions) => {
   const query = useQuery({
-    queryKey: ["boards"],
+    queryKey: [useBoardQueryKey],
     queryFn: boardsService.getBoards,
     initialData,
   });
