@@ -12,7 +12,7 @@ export const useCreateBoard = () => {
       boardsService.createBoard(board),
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: [useBoardQueryKey] });
-    },
+    }
   });
 
   return mutation;
