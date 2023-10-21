@@ -1,7 +1,7 @@
 "use client";
 
 import { Boards } from "@prisma/client";
-import { BoardCard } from "@/components/Boards";
+import { BoardCard } from "@/components/Board";
 import { useBoards } from "@/lib/hooks/useBoards";
 import CreateBoardCard from "../CreacteBoardCard/CreateBoardCard";
 

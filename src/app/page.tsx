@@ -1,4 +1,4 @@
-import { BoardsList } from "@/components/Boards";
+import { BoardsList } from "@/components/Board";
 
 import boardsService from "@/lib/services/boards";
 

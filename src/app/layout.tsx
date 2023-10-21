@@ -18,9 +18,8 @@ export default function RootLayout({
 }) {
   return (
     <html suppressHydrationWarning lang="en">
-      <body className="dark bg-gray-900">
+      <body className="dark bg-gray-900 ">
         <ReactQueryProvider>
-          {" "}
           <NavBar />
           {children}
         </ReactQueryProvider>
