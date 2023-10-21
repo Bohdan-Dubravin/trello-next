@@ -1,16 +1,16 @@
-import { Boards } from "@prisma/client";
+"use client";
 import { useQuery } from "@tanstack/react-query";
 import boardsService from "../../services/boardsService";
+import { BoardPayload } from "@/lib/types/boardPayload.type";
 
 interface UseBoardsOptions {
-  initialData: Boards;
-  id: string;
+  initialData: BoardPayload;
 }
 
-export const useBoard = ({ initialData, id }: UseBoardsOptions) => {
+export const useBoard = ({ initialData }: UseBoardsOptions) => {
   const query = useQuery({
-    queryKey: ["board"],
-    queryFn: () => boardsService.getBoardById(id),
+    queryKey: ["board", initialData.id],
+    queryFn: () => boardsService.getBoardById(initialData.id),
     initialData,
   });
 

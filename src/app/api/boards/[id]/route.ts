@@ -8,7 +8,7 @@ interface BoardRouteContext {
   };
 }
 
-export async function Get(req: Request, { params }: BoardRouteContext) {
+export async function GET(req: Request, { params }: BoardRouteContext) {
   const { id } = params;
 
   const board = await prisma.boards.findUnique({

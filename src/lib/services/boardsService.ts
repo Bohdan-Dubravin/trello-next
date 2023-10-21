@@ -1,6 +1,7 @@
 import { api } from "@/core/api";
 import { Boards } from "@prisma/client";
 import { CreateBoardDto } from "@/app/api/boards/dto";
+import { BoardPayload } from "../types/boardPayload.type";
 
 const boardsService = {
   async getBoards() {
@@ -10,7 +11,7 @@ const boardsService = {
   },
 
   async getBoardById(id: string) {
-    const { data } = await api.get<Boards>(`/api/boards/${id}`);
+    const { data } = await api.get<BoardPayload>(`/api/boards/${id}`);
 
     return data;
   },
