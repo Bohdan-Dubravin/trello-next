@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import boardsService from "../services/boards";
+import boardsService from "../../services/boardsService";
 import { CreateBoardDto } from "@/app/api/boards/dto";
-import { useBoardQueryKey } from "./useBoards";
+import { useBoardQueryKey } from "./useGetBoards";
 
 export const useCreateBoard = () => {
   const queryClient = useQueryClient();
@@ -12,7 +12,7 @@ export const useCreateBoard = () => {
       boardsService.createBoard(board),
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: [useBoardQueryKey] });
-    }
+    },
   });
 
   return mutation;

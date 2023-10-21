@@ -5,6 +5,8 @@ export const createColumnDto = z.object({
   width: z.number().min(50).optional().default(50),
 });
 
+export type CreateColumnDto = z.infer<typeof createColumnDto>;
+
 export const updateColumnDto = createColumnDto
   .omit({ board_id: true })
   .partial();

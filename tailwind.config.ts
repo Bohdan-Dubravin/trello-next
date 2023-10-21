@@ -9,13 +9,7 @@ const config: Config = {
     "./node_modules/flowbite/**/*.js",
   ],
   theme: {
-    extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-      },
-    },
+    extend: { height: { content: "calc(100vh - 12rem)" } },
   },
   plugins: [require("flowbite/plugin")],
 };

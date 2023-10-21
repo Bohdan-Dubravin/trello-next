@@ -1,6 +1,6 @@
 import { BoardsList } from "@/components/Board";
 
-import boardsService from "@/lib/services/boards";
+import boardsService from "@/lib/services/boardsService";
 
 export default async function Home() {
   const boards = await boardsService.getBoards();

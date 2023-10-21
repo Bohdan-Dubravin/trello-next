@@ -1,14 +1,18 @@
 import { InputComponent } from "@/components/ui/InputComponent/InputComponent";
-import { useCreateBoard } from "@/lib/hooks/useCreateBoard";
+import { useCreateColumn } from "@/lib/hooks/columns/useCreateColumn";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-const createBoardSchema = z.object({ title: z.string().min(3).max(20) });
+const createColumnSchema = z.object({
+  title: z.string().min(3).max(20),
+  board_id: z.string().uuid(),
+  width: z.number().min(50).optional().default(50),
+});
 
-type createBoardValues = z.infer<typeof createBoardSchema>;
+type createBoardValues = z.infer<typeof createColumnSchema>;
 
-const CreateBoardCard = () => {
+const CreateColumn = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   const {
@@ -16,9 +20,9 @@ const CreateBoardCard = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<createBoardValues>({
-    resolver: zodResolver(createBoardSchema),
+    resolver: zodResolver(createColumnSchema),
   });
-  const { mutateAsync, isPending } = useCreateBoard();
+  const { mutateAsync, isPending } = useCreateColumn();
 
   const onSubmit = handleSubmit(async (values) => {
     await mutateAsync(values);
@@ -52,4 +56,4 @@ const CreateBoardCard = () => {
   );
 };
 
-export default CreateBoardCard;
+export default CreateColumn;

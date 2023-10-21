@@ -9,6 +9,12 @@ const boardsService = {
     return data;
   },
 
+  async getBoardById(id: string) {
+    const { data } = await api.get<Boards>(`/api/boards/${id}`);
+
+    return data;
+  },
+
   async createBoard(board: CreateBoardDto) {
     const { data } = await api.post<Boards>("/api/boards", board);
 
