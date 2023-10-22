@@ -13,9 +13,11 @@ export default async function BoardPage({ params }: BoardPageProps) {
   if (!board) notFound();
 
   return (
-    <div className="container mx-auto w-full h-content">
-      <h1 className="text-white text-4xl text-center mb-8">{board.title}</h1>
+    <>
+      <div className="container mx-auto w-full">
+        <h1 className="text-white text-4xl text-center mb-8">{board.title}</h1>
+      </div>
       <ColumnList board={board} />
-    </div>
+    </>
   );
 }
