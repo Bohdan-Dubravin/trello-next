@@ -45,7 +45,7 @@ export async function POST(req: Request) {
     data: {
       title,
       board_id,
-      width: 50,
+      width: 200,
       order: lastColumn ? lastColumn.order + 1 : 0,
     },
   });

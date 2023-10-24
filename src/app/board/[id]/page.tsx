@@ -1,5 +1,5 @@
 import ColumnList from "@/components/Column/ColumnList/ColumnList";
-import { prisma } from "@/core/prisma";
+
 import boardsService from "@/lib/services/boardsService";
 import { notFound } from "next/navigation";
 

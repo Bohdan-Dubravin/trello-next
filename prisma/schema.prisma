@@ -23,7 +23,7 @@ model Columns {
   board_id   String
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
-  Cards      Cards[]
+  cards      Cards[]
   board      Boards   @relation(fields: [board_id], references: [id], onDelete: Cascade)
 }
 
