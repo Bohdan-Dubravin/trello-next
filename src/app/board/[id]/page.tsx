@@ -1,5 +1,4 @@
-import ColumnList from "@/components/Column/ColumnList/ColumnList";
-
+import { ColumnList } from "@/components/Column";
 import boardsService from "@/lib/services/boardsService";
 import { notFound } from "next/navigation";
 
