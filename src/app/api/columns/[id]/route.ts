@@ -9,6 +9,26 @@ interface ColumnRouteContext {
   };
 }
 
+export async function GET(req: Request, { params }: ColumnRouteContext) {
+  const { id } = params;
+
+  const column = await prisma.columns.findUnique({
+    where: { id },
+    include: { Cards: true },
+  });
+
+  if (!column) {
+    return NextResponse.json(
+      [{ code: "not found", messages: "column not found" }],
+      {
+        status: 400,
+      }
+    );
+  }
+
+  return NextResponse.json(column);
+}
+
 export async function PUT(req: Request, { params }: ColumnRouteContext) {
   const { id } = params;
   const body = await req.json();
