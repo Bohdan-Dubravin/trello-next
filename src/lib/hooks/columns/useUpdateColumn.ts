@@ -17,13 +17,13 @@ export const useUpdateColumn = (columnId: string) => {
         "column",
         columnId,
       ]);
-      const column = [...data?.columns!] || [];
+      const column = [...data!.columns] || [];
 
       // columns.push({ ...newColumn, cards: [] });
 
       queryClient.setQueryData<ColumnPayload>(["column", columnId], (old) => ({
         ...old!,
-        columns,
+        column,
       }));
     },
   });

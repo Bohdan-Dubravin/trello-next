@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/core/prisma";
 import { updateCardOrderDto } from "../dto";
 
-export async function PUT(req: Request) {
+export async function PATCH(req: Request) {
   const body = await req.json();
   const validateBody = updateCardOrderDto.safeParse(body);
   if (!validateBody.success) {

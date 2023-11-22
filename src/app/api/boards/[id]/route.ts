@@ -13,8 +13,9 @@ export async function GET(req: Request, { params }: BoardRouteContext) {
 
   const board = await prisma.boards.findUnique({
     where: { id },
-    include: { columns: { include: { Cards: true } } },
+    include: { columns: { include: { cards: true } } },
   });
+
   if (!board) {
     return NextResponse.json(
       [{ code: "not_found", messages: "Board not found" }],
@@ -25,7 +26,7 @@ export async function GET(req: Request, { params }: BoardRouteContext) {
   return NextResponse.json(board);
 }
 
-export async function PUT(req: Request, { params }: BoardRouteContext) {
+export async function PATCH(req: Request, { params }: BoardRouteContext) {
   const { id } = params;
   const body = await req.json();
   const validateBody = updateBoardDto.safeParse(body);

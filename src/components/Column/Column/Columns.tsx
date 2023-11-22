@@ -1,7 +1,10 @@
+"use client";
+
 import {
   ColumnPayload,
   useColumnQuery,
 } from "@/lib/hooks/columns/useGetColumn";
+import { useUpdateColumnMutation } from "@/lib/hooks/columns/useUpdateColumnMutation";
 
 import { DragEvent, useEffect, useRef, useState } from "react";
 
@@ -35,9 +38,9 @@ const Column = ({ column }: ColumnsProps) => {
     });
   };
 
-  // const { mutateAsync } = useUpdateColumnMutation();
+  const { mutateAsync } = useUpdateColumnMutation();
   const onResizeEnd = async () => {
-    // await mutateAsync({ columnId: data.id, data: { width } });
+    await mutateAsync({ columnId: data.id, data: { width } });
   };
   return (
     <li

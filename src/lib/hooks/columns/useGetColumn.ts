@@ -4,7 +4,7 @@ import { Prisma } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
 
 export type ColumnPayload = Prisma.ColumnsGetPayload<{
-  include: { Cards: true };
+  include: { cards: true };
 }>;
 
 interface useColumnQUeryOptions {

@@ -14,7 +14,7 @@ export async function GET(req: Request, { params }: ColumnRouteContext) {
 
   const column = await prisma.columns.findUnique({
     where: { id },
-    include: { Cards: true },
+    include: { cards: true },
   });
 
   if (!column) {
@@ -29,7 +29,7 @@ export async function GET(req: Request, { params }: ColumnRouteContext) {
   return NextResponse.json(column);
 }
 
-export async function PUT(req: Request, { params }: ColumnRouteContext) {
+export async function PATCH(req: Request, { params }: ColumnRouteContext) {
   const { id } = params;
   const body = await req.json();
   const validateBody = updateColumnDto.safeParse(body);

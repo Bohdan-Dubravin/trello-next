@@ -9,7 +9,7 @@ interface CardRouteContext {
   };
 }
 
-export async function PUT(req: Request, { params }: CardRouteContext) {
+export async function PATCH(req: Request, { params }: CardRouteContext) {
   const { id } = params;
   const body = await req.json();
   const validateBody = updateCardDto.safeParse(body);
